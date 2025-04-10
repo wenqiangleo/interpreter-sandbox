@@ -72,7 +72,7 @@ print(f"执行结果: {result}")
 1. 启动Web服务
 
 ```bash
-python src/sandbox/web/app.py
+python src/web/app.py
 ```
 
 2. 在浏览器中访问: http://localhost:5000
