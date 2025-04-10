@@ -1,0 +1,16 @@
+Metadata-Version: 2.2
+Name: sandbox-interpreter
+Version: 0.1.0
+Requires-Python: >=3.8
+Requires-Dist: psutil>=5.9.0
+Requires-Dist: flask>=2.0.0
+Requires-Dist: docker>=5.0.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: open-interpreter>=0.1.5
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: black>=22.0.0; extra == "dev"
+Requires-Dist: flake8>=5.0.0; extra == "dev"
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python

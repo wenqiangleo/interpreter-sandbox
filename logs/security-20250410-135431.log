@@ -1,0 +1,144 @@
+2025-04-10 13:54:31,018 - INFO - 开始执行代码 [ID: 2b077b47-ad72-4325-9c9f-91bcf4260864]
+2025-04-10 13:54:31,019 - INFO - 代码内容:
+
+import time
+time.sleep(2)  # 睡眠2秒，超过设置的1秒限制
+__result__ = "完成"
+
+2025-04-10 13:54:31,019 - INFO - 沙箱设置: {
+  "max_memory_mb": 10,
+  "max_cpu_percent": 50,
+  "max_execution_time": 1,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "time",
+    "array",
+    "math",
+    "random",
+    "json"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 13:54:31,019 - INFO - 模块导入 [ID: 2b077b47-ad72-4325-9c9f-91bcf4260864] - 允许 导入 time
+2025-04-10 13:54:31,124 - INFO - 资源使用 [ID: 2b077b47-ad72-4325-9c9f-91bcf4260864] - 内存: 256.24MB, CPU: 0.00%
+2025-04-10 13:54:31,124 - ERROR - 执行错误 [ID: 2b077b47-ad72-4325-9c9f-91bcf4260864] - ResourceLimitExceeded: 内存使用超出限制: 256.24MB > 10MB
+2025-04-10 13:54:33,019 - INFO - 执行结束 [ID: 2b077b47-ad72-4325-9c9f-91bcf4260864] - 状态: 成功, 耗时: 2.0011秒
+2025-04-10 13:54:33,019 - INFO - 执行结果 [ID: 2b077b47-ad72-4325-9c9f-91bcf4260864]:
+完成
+2025-04-10 13:54:33,037 - INFO - 开始执行代码 [ID: 7a6cdb48-6236-4c92-8c1d-b207caeaee8f]
+2025-04-10 13:54:33,037 - INFO - 代码内容:
+
+with open('test_temp.txt', 'r') as f:
+    content = f.read()
+__result__ = content
+
+2025-04-10 13:54:33,038 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 5,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": true,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random",
+    "json"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 13:54:33,050 - ERROR - 执行错误 [ID: 7a6cdb48-6236-4c92-8c1d-b207caeaee8f] - NameError: name 'open' is not defined
+2025-04-10 13:54:33,050 - INFO - 执行结束 [ID: 7a6cdb48-6236-4c92-8c1d-b207caeaee8f] - 状态: 失败, 耗时: 0.0126秒
+2025-04-10 13:54:33,066 - INFO - 开始执行代码 [ID: 49790f13-f138-4e68-b616-607730d1838b]
+2025-04-10 13:54:33,066 - INFO - 代码内容:
+
+import os  # 默认不允许导入os模块
+__result__ = "导入成功"
+
+2025-04-10 13:54:33,066 - INFO - 沙箱设置: {
+  "max_memory_mb": 10,
+  "max_cpu_percent": 50,
+  "max_execution_time": 1,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "time",
+    "array",
+    "math",
+    "random",
+    "json"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 13:54:33,067 - INFO - 模块导入 [ID: 49790f13-f138-4e68-b616-607730d1838b] - 拒绝 导入 os
+2025-04-10 13:54:33,080 - ERROR - 执行错误 [ID: 49790f13-f138-4e68-b616-607730d1838b] - SandboxError: 不允许导入模块: os
+2025-04-10 13:54:33,080 - INFO - 执行结束 [ID: 49790f13-f138-4e68-b616-607730d1838b] - 状态: 失败, 耗时: 0.0148秒
+2025-04-10 13:54:33,081 - INFO - 开始执行代码 [ID: 92111270-958a-490a-913f-1e14f8b8c476]
+2025-04-10 13:54:33,082 - INFO - 代码内容:
+
+import array
+# 尝试分配11MB内存
+arr = array.array('i', [0] * (11 * 1024 * 1024 // 4))
+__result__ = len(arr)
+
+2025-04-10 13:54:33,082 - INFO - 沙箱设置: {
+  "max_memory_mb": 10,
+  "max_cpu_percent": 50,
+  "max_execution_time": 1,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "time",
+    "array",
+    "math",
+    "random",
+    "json"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 13:54:33,082 - INFO - 模块导入 [ID: 92111270-958a-490a-913f-1e14f8b8c476] - 允许 导入 array
+2025-04-10 13:54:33,126 - INFO - 执行结束 [ID: 92111270-958a-490a-913f-1e14f8b8c476] - 状态: 成功, 耗时: 0.0447秒
+2025-04-10 13:54:33,126 - INFO - 执行结果 [ID: 92111270-958a-490a-913f-1e14f8b8c476]:
+2883584
+2025-04-10 13:54:33,144 - INFO - 开始执行代码 [ID: bf685262-1044-4527-809a-51b178ce412f]
+2025-04-10 13:54:33,145 - INFO - 代码内容:
+
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+__result__ = s.connect(("example.com", 80))
+
+2025-04-10 13:54:33,145 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 5,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "socket",
+    "urllib"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 13:54:33,145 - INFO - 模块导入 [ID: bf685262-1044-4527-809a-51b178ce412f] - 允许 导入 socket
+2025-04-10 13:54:33,250 - INFO - 资源使用 [ID: bf685262-1044-4527-809a-51b178ce412f] - 内存: 258.22MB, CPU: 0.00%
+2025-04-10 13:54:33,251 - ERROR - 执行错误 [ID: bf685262-1044-4527-809a-51b178ce412f] - ResourceLimitExceeded: 内存使用超出限制: 258.22MB > 100MB
+2025-04-10 13:54:33,418 - INFO - 执行结束 [ID: bf685262-1044-4527-809a-51b178ce412f] - 状态: 成功, 耗时: 0.2736秒

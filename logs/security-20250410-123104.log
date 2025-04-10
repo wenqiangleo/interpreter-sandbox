@@ -1,0 +1,48 @@
+2025-04-10 12:31:04,169 - INFO - 开始执行代码 [ID: 4ce10e9e-5755-4717-8c63-8d71914a9f95]
+2025-04-10 12:31:04,170 - INFO - 代码内容:
+# 同时测试CPU和内存
+import math
+import random
+
+# 内存部分 - 创建大矩阵
+size = 100
+matrix_a = [[random.random() for _ in range(size)] for _ in range(size)]
+matrix_b = [[random.random() for _ in range(size)] for _ in range(size)]
+
+# CPU部分 - 矩阵乘法(计算密集型)
+result_matrix = [[0 for _ in range(size)] for _ in range(size)]
+for i in range(size):
+    for j in range(size):
+        for k in range(size):
+            result_matrix[i][j] += matrix_a[i][k] * matrix_b[k][j]
+
+# 再增加些计算复杂度
+complex_sum = 0
+for i in range(size):
+    for j in range(size):
+        complex_sum += math.sin(result_matrix[i][j]) * math.cos(result_matrix[i][j])
+
+__result__ = f"矩阵大小: {size}x{size}, 计算结果: {complex_sum:.4f}"
+2025-04-10 12:31:04,176 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 10,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random",
+    "json",
+    "time",
+    "array"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 12:31:04,183 - INFO - 模块导入 [ID: 4ce10e9e-5755-4717-8c63-8d71914a9f95] - 允许 导入 math
+2025-04-10 12:31:04,184 - INFO - 模块导入 [ID: 4ce10e9e-5755-4717-8c63-8d71914a9f95] - 允许 导入 random
+2025-04-10 12:31:04,198 - ERROR - 执行错误 [ID: 4ce10e9e-5755-4717-8c63-8d71914a9f95] - NameError: name 'size' is not defined
+2025-04-10 12:31:04,199 - INFO - 执行结束 [ID: 4ce10e9e-5755-4717-8c63-8d71914a9f95] - 状态: 失败, 耗时: 0.0305秒

@@ -1,0 +1,132 @@
+2025-04-10 13:48:14,603 - INFO - 开始执行代码 [ID: 98166cfb-b53e-4dd5-b946-46fe6e13fdd8]
+2025-04-10 13:48:14,603 - INFO - 代码内容:
+# 简单内存测试
+data = []
+for i in range(10):
+    # 每次分配约1MB内存
+    chunk = [0] * (256 * 1024)  # 约1MB内存
+    data.append(chunk)
+    print(f"已分配约 {i+1} MB内存")
+
+__result__ = f"内存测试完成，共分配约 {len(data)} MB"
+2025-04-10 13:48:14,604 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 10,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random",
+    "json",
+    "time",
+    "array"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 13:48:14,610 - INFO - 执行结束 [ID: 98166cfb-b53e-4dd5-b946-46fe6e13fdd8] - 状态: 成功, 耗时: 0.0065秒
+2025-04-10 13:48:14,610 - INFO - 执行结果 [ID: 98166cfb-b53e-4dd5-b946-46fe6e13fdd8]:
+内存测试完成，共分配约 10 MB
+2025-04-10 13:48:15,694 - INFO - 开始执行代码 [ID: f5a1c49b-adcb-461b-8959-ed6913598f31]
+2025-04-10 13:48:15,694 - INFO - 代码内容:
+# 简单内存测试
+data = []
+for i in range(10):
+    # 每次分配约1MB内存
+    chunk = [0] * (256 * 1024)  # 约1MB内存
+    data.append(chunk)
+    print(f"已分配约 {i+1} MB内存")
+
+__result__ = f"内存测试完成，共分配约 {len(data)} MB"
+2025-04-10 13:48:15,695 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 10,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random",
+    "json",
+    "time",
+    "array"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 13:48:15,700 - INFO - 执行结束 [ID: f5a1c49b-adcb-461b-8959-ed6913598f31] - 状态: 成功, 耗时: 0.0060秒
+2025-04-10 13:48:15,700 - INFO - 执行结果 [ID: f5a1c49b-adcb-461b-8959-ed6913598f31]:
+内存测试完成，共分配约 10 MB
+2025-04-10 13:48:16,483 - INFO - 开始执行代码 [ID: 5148ef48-e3e6-4f0b-9228-f1da071360a6]
+2025-04-10 13:48:16,484 - INFO - 代码内容:
+# 简单内存测试
+data = []
+for i in range(10):
+    # 每次分配约1MB内存
+    chunk = [0] * (256 * 1024)  # 约1MB内存
+    data.append(chunk)
+    print(f"已分配约 {i+1} MB内存")
+
+__result__ = f"内存测试完成，共分配约 {len(data)} MB"
+2025-04-10 13:48:16,485 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 10,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random",
+    "json",
+    "time",
+    "array"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 13:48:16,491 - INFO - 执行结束 [ID: 5148ef48-e3e6-4f0b-9228-f1da071360a6] - 状态: 成功, 耗时: 0.0080秒
+2025-04-10 13:48:16,492 - INFO - 执行结果 [ID: 5148ef48-e3e6-4f0b-9228-f1da071360a6]:
+内存测试完成，共分配约 10 MB
+2025-04-10 13:48:16,572 - INFO - 开始执行代码 [ID: ef701f74-110a-48fd-826f-757f90229a8a]
+2025-04-10 13:48:16,574 - INFO - 代码内容:
+# 简单内存测试
+data = []
+for i in range(10):
+    # 每次分配约1MB内存
+    chunk = [0] * (256 * 1024)  # 约1MB内存
+    data.append(chunk)
+    print(f"已分配约 {i+1} MB内存")
+
+__result__ = f"内存测试完成，共分配约 {len(data)} MB"
+2025-04-10 13:48:16,575 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 10,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random",
+    "json",
+    "time",
+    "array"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 13:48:16,581 - INFO - 执行结束 [ID: ef701f74-110a-48fd-826f-757f90229a8a] - 状态: 成功, 耗时: 0.0090秒
+2025-04-10 13:48:16,582 - INFO - 执行结果 [ID: ef701f74-110a-48fd-826f-757f90229a8a]:
+内存测试完成，共分配约 10 MB

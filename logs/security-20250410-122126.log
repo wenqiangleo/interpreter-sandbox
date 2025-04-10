@@ -1,0 +1,259 @@
+2025-04-10 12:21:26,994 - INFO - 开始执行代码 [ID: f826dc40-87bb-47ab-ad12-e5762626c967]
+2025-04-10 12:21:26,994 - INFO - 代码内容:
+print("1+1")
+2025-04-10 12:21:26,994 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 5,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random",
+    "json",
+    "time",
+    "array"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 12:21:26,996 - INFO - 执行结束 [ID: f826dc40-87bb-47ab-ad12-e5762626c967] - 状态: 成功, 耗时: 0.0020秒
+2025-04-10 12:22:40,896 - INFO - 开始执行代码 [ID: dbd70419-0270-45c5-a123-e0de2c701691]
+2025-04-10 12:22:40,905 - INFO - 代码内容:
+计算1+1等于多少，并用Python代码验证
+2025-04-10 12:22:40,906 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 5,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random",
+    "json",
+    "time",
+    "array"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 12:22:40,926 - ERROR - 执行错误 [ID: dbd70419-0270-45c5-a123-e0de2c701691] - SyntaxError: invalid decimal literal (<string>, line 1)
+2025-04-10 12:22:40,926 - INFO - 执行结束 [ID: dbd70419-0270-45c5-a123-e0de2c701691] - 状态: 失败, 耗时: 0.0295秒
+2025-04-10 12:23:05,655 - INFO - 开始执行代码 [ID: 2d5ffc62-d842-4124-bc3e-01ba02ca5cc3]
+2025-04-10 12:23:05,656 - INFO - 代码内容:
+print("1+1")
+2025-04-10 12:23:05,657 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 5,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random",
+    "json",
+    "time",
+    "array"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 12:23:05,660 - INFO - 执行结束 [ID: 2d5ffc62-d842-4124-bc3e-01ba02ca5cc3] - 状态: 成功, 耗时: 0.0055秒
+2025-04-10 12:26:00,686 - INFO - 开始执行代码 [ID: 76b8003e-8cfe-44fc-88d1-45c16e98bb86]
+2025-04-10 12:26:00,687 - INFO - 代码内容:
+"""
+import math
+x = math.sqrt(16)
+__result__ = x
+"""
+2025-04-10 12:26:00,688 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 10,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random",
+    "json",
+    "time",
+    "array"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 12:26:00,690 - INFO - 执行结束 [ID: 76b8003e-8cfe-44fc-88d1-45c16e98bb86] - 状态: 成功, 耗时: 0.0045秒
+2025-04-10 12:26:01,668 - INFO - 开始执行代码 [ID: 262738aa-b8fd-4a13-b3ed-d2302635044b]
+2025-04-10 12:26:01,670 - INFO - 代码内容:
+"""
+import math
+x = math.sqrt(16)
+__result__ = x
+"""
+2025-04-10 12:26:01,672 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 10,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random",
+    "json",
+    "time",
+    "array"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 12:26:01,675 - INFO - 执行结束 [ID: 262738aa-b8fd-4a13-b3ed-d2302635044b] - 状态: 成功, 耗时: 0.0069秒
+2025-04-10 12:26:05,257 - INFO - 开始执行代码 [ID: 23a71d8e-9f82-41c7-83e8-7c1b2aad4a84]
+2025-04-10 12:26:05,258 - INFO - 代码内容:
+"""
+import math
+x = math.sqrt(16)
+__result__ = x
+"""
+2025-04-10 12:26:05,260 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 10,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random",
+    "json",
+    "time",
+    "array"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 12:26:05,266 - INFO - 执行结束 [ID: 23a71d8e-9f82-41c7-83e8-7c1b2aad4a84] - 状态: 成功, 耗时: 0.0090秒
+2025-04-10 12:26:05,997 - INFO - 开始执行代码 [ID: 25df0e0d-94d2-459a-885c-92acd2ffb99c]
+2025-04-10 12:26:05,999 - INFO - 代码内容:
+"""
+import math
+x = math.sqrt(16)
+__result__ = x
+"""
+2025-04-10 12:26:06,001 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 10,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random",
+    "json",
+    "time",
+    "array"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 12:26:06,006 - INFO - 执行结束 [ID: 25df0e0d-94d2-459a-885c-92acd2ffb99c] - 状态: 成功, 耗时: 0.0085秒
+2025-04-10 12:26:06,616 - INFO - 开始执行代码 [ID: 9534b7ab-6cec-43de-bbe5-8cdd99b3efa3]
+2025-04-10 12:26:06,618 - INFO - 代码内容:
+"""
+import math
+x = math.sqrt(16)
+__result__ = x
+"""
+2025-04-10 12:26:06,623 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 10,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random",
+    "json",
+    "time",
+    "array"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 12:26:06,630 - INFO - 执行结束 [ID: 9534b7ab-6cec-43de-bbe5-8cdd99b3efa3] - 状态: 成功, 耗时: 0.0136秒
+2025-04-10 12:26:06,980 - INFO - 开始执行代码 [ID: 520df0de-e296-4c37-9ce3-a5b7a736e085]
+2025-04-10 12:26:06,981 - INFO - 代码内容:
+"""
+import math
+x = math.sqrt(16)
+__result__ = x
+"""
+2025-04-10 12:26:06,983 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 10,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random",
+    "json",
+    "time",
+    "array"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 12:26:06,991 - INFO - 执行结束 [ID: 520df0de-e296-4c37-9ce3-a5b7a736e085] - 状态: 成功, 耗时: 0.0109秒
+2025-04-10 12:26:07,078 - INFO - 开始执行代码 [ID: 3aaf5f35-575a-49aa-98f9-11bbeb6e9216]
+2025-04-10 12:26:07,080 - INFO - 代码内容:
+"""
+import math
+x = math.sqrt(16)
+__result__ = x
+"""
+2025-04-10 12:26:07,082 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 10,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random",
+    "json",
+    "time",
+    "array"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 12:26:07,089 - INFO - 执行结束 [ID: 3aaf5f35-575a-49aa-98f9-11bbeb6e9216] - 状态: 成功, 耗时: 0.0112秒

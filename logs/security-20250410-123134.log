@@ -1,0 +1,98 @@
+2025-04-10 12:31:34,852 - INFO - 开始执行代码 [ID: 4562bd42-de0d-40ca-83b7-7cea122f7222]
+2025-04-10 12:31:34,853 - INFO - 代码内容:
+# 同时测试CPU和内存
+import math
+import random
+
+# 内存部分 - 创建大矩阵
+size = 100
+matrix_a = [[random.random() for _ in range(size)] for _ in range(size)]
+matrix_b = [[random.random() for _ in range(size)] for _ in range(size)]
+
+# CPU部分 - 矩阵乘法(计算密集型)
+result_matrix = [[0 for _ in range(size)] for _ in range(size)]
+for i in range(size):
+    for j in range(size):
+        for k in range(size):
+            result_matrix[i][j] += matrix_a[i][k] * matrix_b[k][j]
+
+# 再增加些计算复杂度
+complex_sum = 0
+for i in range(size):
+    for j in range(size):
+        complex_sum += math.sin(result_matrix[i][j]) * math.cos(result_matrix[i][j])
+
+__result__ = f"矩阵大小: {size}x{size}, 计算结果: {complex_sum:.4f}"
+2025-04-10 12:31:34,854 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 10,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random",
+    "json",
+    "time",
+    "array"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 12:31:34,855 - INFO - 模块导入 [ID: 4562bd42-de0d-40ca-83b7-7cea122f7222] - 允许 导入 math
+2025-04-10 12:31:34,855 - INFO - 模块导入 [ID: 4562bd42-de0d-40ca-83b7-7cea122f7222] - 允许 导入 random
+2025-04-10 12:31:34,871 - ERROR - 执行错误 [ID: 4562bd42-de0d-40ca-83b7-7cea122f7222] - NameError: name 'size' is not defined
+2025-04-10 12:31:34,871 - INFO - 执行结束 [ID: 4562bd42-de0d-40ca-83b7-7cea122f7222] - 状态: 失败, 耗时: 0.0190秒
+2025-04-10 12:31:53,976 - INFO - 开始执行代码 [ID: 419981cf-702c-496b-9b3a-4c78de7d1158]
+2025-04-10 12:31:53,976 - INFO - 代码内容:
+# 长时间运行测试 - 同时消耗CPU和内存
+import time
+
+data = []
+start_time = time.time()
+duration = 0
+
+# 运行约4秒，不断分配内存并进行计算
+while duration < 4:
+    # 分配内存
+    data.append([0] * 10000)
+    
+    # CPU密集计算
+    total = 0
+    for i in range(100000):
+        total += i * i
+    
+    duration = time.time() - start_time
+    print(f"已运行: {duration:.2f}秒, 内存分配: {len(data) * 10000 * 4 / (1024*1024):.2f}MB")
+
+__result__ = f"测试完成，运行时间: {duration:.2f}秒"
+2025-04-10 12:31:53,977 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 10,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random",
+    "json",
+    "time",
+    "array"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 12:31:53,978 - INFO - 模块导入 [ID: 419981cf-702c-496b-9b3a-4c78de7d1158] - 允许 导入 time
+2025-04-10 12:31:54,105 - INFO - 资源使用 [ID: 419981cf-702c-496b-9b3a-4c78de7d1158] - 内存: 35.21MB, CPU: 0.00%
+2025-04-10 12:31:54,210 - INFO - 资源使用 [ID: 419981cf-702c-496b-9b3a-4c78de7d1158] - 内存: 36.36MB, CPU: 14.30%
+2025-04-10 12:31:54,336 - INFO - 资源使用 [ID: 419981cf-702c-496b-9b3a-4c78de7d1158] - 内存: 37.73MB, CPU: 62.50%
+2025-04-10 12:31:54,350 - ERROR - 执行错误 [ID: 419981cf-702c-496b-9b3a-4c78de7d1158] - ResourceLimitExceeded: CPU使用率超出限制: 62.50% > 50%
+2025-04-10 12:31:57,984 - INFO - 执行结束 [ID: 419981cf-702c-496b-9b3a-4c78de7d1158] - 状态: 成功, 耗时: 4.0077秒
+2025-04-10 12:31:57,985 - INFO - 执行结果 [ID: 419981cf-702c-496b-9b3a-4c78de7d1158]:
+测试完成，运行时间: 4.01秒

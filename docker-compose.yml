@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  sandbox:
+    build: .
+    container_name: sandbox-interpreter
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./logs:/app/logs
+    environment:
+      - PYTHONPATH=/app
+    restart: unless-stopped

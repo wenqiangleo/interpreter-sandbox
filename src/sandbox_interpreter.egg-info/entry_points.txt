@@ -1,0 +1,2 @@
+[console_scripts]
+sandbox-web = sandbox.web.app:run_server

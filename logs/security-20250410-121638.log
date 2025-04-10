@@ -1,0 +1,27 @@
+2025-04-10 12:16:38,477 - INFO - 开始执行代码 [ID: 7b2faa82-a1ac-4bae-a2ba-7157a411a57a]
+2025-04-10 12:16:38,478 - INFO - 代码内容:
+
+import math
+x = math.sqrt(16)
+__result__ = x
+
+2025-04-10 12:16:38,478 - INFO - 沙箱设置: {
+  "max_memory_mb": 100,
+  "max_cpu_percent": 50,
+  "max_execution_time": 5,
+  "allowed_directories": [
+    "./"
+  ],
+  "network_access": false,
+  "allow_file_operations": false,
+  "allow_imports": true,
+  "allowed_modules": [
+    "math",
+    "random"
+  ],
+  "check_interval": 0.1
+}
+2025-04-10 12:16:38,479 - INFO - 模块导入 [ID: 7b2faa82-a1ac-4bae-a2ba-7157a411a57a] - 允许 导入 math
+2025-04-10 12:16:38,479 - INFO - 执行结束 [ID: 7b2faa82-a1ac-4bae-a2ba-7157a411a57a] - 状态: 成功, 耗时: 0.0020秒
+2025-04-10 12:16:38,489 - INFO - 执行结果 [ID: 7b2faa82-a1ac-4bae-a2ba-7157a411a57a]:
+4.0

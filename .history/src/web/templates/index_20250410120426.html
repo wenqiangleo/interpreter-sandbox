@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沙箱执行环境</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .code-editor {
+            font-family: monospace;
+            height: 300px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+        }
+        .result-container {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-height: 100px;
+            background-color: #f8f9fa;
+        }
+        .error-message {
+            color: #dc3545;
+        }
+        .chart-container {
+            margin-top: 20px;
+            height: 250px;
+        }
+        .history-item {
+            cursor: pointer;
+        }
+        .history-item:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">沙箱执行环境</h1>
+        
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>代码执行</h5>
+                    </div>
+                    <div class="card-body">
+                        <textarea id="codeEditor" class="code-editor" placeholder="在此输入要执行的Python代码..."></textarea>
+                        
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="maxMemory" class="form-label">内存限制 (MB)</label>
+                                    <input type="number" class="form-control" id="maxMemory" value="100">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="maxCpu" class="form-label">CPU限制 (%)</label>
+                                    <input type="number" class="form-control" id="maxCpu" value="50">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="maxTime" class="form-label">执行时间限制 (秒)</label>
+                                    <input type="number" class="form-control" id="maxTime" value="5">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="allowedModules" class="form-label">允许导入的模块 (逗号分隔)</label>
+                                    <input type="text" class="form-control" id="allowedModules" value="math,random,json,time,array">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="allowFileOperations">
+                                    <label class="form-check-label" for="allowFileOperations">
+                                        允许文件操作
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="allowNetworkAccess">
+                                    <label class="form-check-label" for="allowNetworkAccess">
+                                        允许网络访问
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="allowImports" checked>
+                                    <label class="form-check-label" for="allowImports">
+                                        允许导入模块
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button id="executeBtn" class="btn btn-primary mt-3">执行代码</button>
+                        
+                        <div id="resultContainer" class="result-container mt-3">
+                            <div id="executionStatus"></div>
+                            <pre id="executionResult"></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5>资源使用情况</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="resourceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>执行历史</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group">
+                            {% for record in history %}
+                            <a href="/history/{{ record.id }}" class="list-group-item list-group-item-action history-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">{{ record.code[:30] }}{% if record.code|length > 30 %}...{% endif %}</h6>
+                                    <small>{{ record.execution_time|round(2) }}秒</small>
+                                </div>
+                                <small class="{% if record.status == '成功' %}text-success{% else %}text-danger{% endif %}">{{ record.status }}</small>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentExecutionId = null;
+        let resourceChart = null;
+        let chartData = {
+            labels: [],
+            datasets: [
+                {
+                    label: '内存使用 (MB)',
+                    data: [],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: true
+                },
+                {
+                    label: 'CPU使用率 (%)',
+                    data: [],
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    fill: true
+                }
+            ]
+        };
+        
+        // 初始化图表
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('resourceChart').getContext('2d');
+            resourceChart = new Chart(ctx, {
+                type: 'line',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: '时间 (秒)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: '使用量'
+                            },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // 设置执行按钮事件
+            document.getElementById('executeBtn').addEventListener('click', executeCode);
+        });
+        
+        // 执行代码
+        function executeCode() {
+            const code = document.getElementById('codeEditor').value;
+            const maxMemory = document.getElementById('maxMemory').value;
+            const maxCpu = document.getElementById('maxCpu').value;
+            const maxTime = document.getElementById('maxTime').value;
+            const allowedModules = document.getElementById('allowedModules').value;
+            const allowFileOperations = document.getElementById('allowFileOperations').checked;
+            const allowNetworkAccess = document.getElementById('allowNetworkAccess').checked;
+            const allowImports = document.getElementById('allowImports').checked;
+            
+            // 重置图表
+            resetChart();
+            
+            // 显示执行状态
+            document.getElementById('executionStatus').innerHTML = '<div class="spinner-border spinner-border-sm" role="status"></div> 执行中...';
+            document.getElementById('executionResult').innerText = '';
+            
+            // 发送请求
+            const formData = new FormData();
+            formData.append('code', code);
+            formData.append('max_memory_mb', maxMemory);
+            formData.append('max_cpu_percent', maxCpu);
+            formData.append('max_execution_time', maxTime);
+            formData.append('allowed_modules', allowedModules);
+            formData.append('allow_file_operations', allowFileOperations);
+            formData.append('network_access', allowNetworkAccess);
+            formData.append('allow_imports', allowImports);
+            
+            fetch('/execute', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // 显示执行结果
+                let statusHtml = '';
+                if (data.status === '成功') {
+                    statusHtml = `<div class="alert alert-success">执行成功 (${data.execution_time.toFixed(2)}秒)</div>`;
+                    document.getElementById('executionResult').innerText = JSON.stringify(data.result, null, 2);
+                } else {
+                    statusHtml = `<div class="alert alert-danger">执行失败: ${data.status}</div>`;
+                    document.getElementById('executionResult').innerText = data.error;
+                }
+                document.getElementById('executionStatus').innerHTML = statusHtml;
+                
+                // 设置当前执行ID并开始获取资源数据
+                currentExecutionId = data.id;
+                startResourceDataPolling();
+            })
+            .catch(error => {
+                document.getElementById('executionStatus').innerHTML = '<div class="alert alert-danger">执行请求失败</div>';
+                document.getElementById('executionResult').innerText = error.toString();
+            });
+        }
+        
+        // 开始轮询资源数据
+        function startResourceDataPolling() {
+            if (!currentExecutionId) return;
+            
+            const intervalId = setInterval(() => {
+                fetch(`/resource_data/${currentExecutionId}`)
+                .then(response => response.json())
+                .then(data => {
+                    updateResourceChart(data);
+                })
+                .catch(error => console.error('获取资源数据失败:', error));
+            }, 500);
+            
+            // 20秒后停止轮询
+            setTimeout(() => {
+                clearInterval(intervalId);
+            }, 20000);
+        }
+        
+        // 更新资源图表
+        function updateResourceChart(data) {
+            // 清除旧数据
+            chartData.labels = [];
+            chartData.datasets[0].data = [];
+            chartData.datasets[1].data = [];
+            
+            // 添加新数据
+            data.forEach(point => {
+                chartData.labels.push(point.elapsed_time.toFixed(1));
+                chartData.datasets[0].data.push(point.memory_mb);
+                chartData.datasets[1].data.push(point.cpu_percent);
+            });
+            
+            // 更新图表
+            resourceChart.update();
+        }
+        
+        // 重置图表
+        function resetChart() {
+            chartData.labels = [];
+            chartData.datasets[0].data = [];
+            chartData.datasets[1].data = [];
+            resourceChart.update();
+        }
+    </script>
+</body>
+</html>
