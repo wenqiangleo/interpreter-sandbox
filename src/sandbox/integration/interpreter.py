@@ -32,12 +32,12 @@ class InterpreterSandbox:
         self.original_system_message = interpreter.system_message if hasattr(interpreter, "system_message") else None
         
         # 配置 LLM - 注意添加openai/前缀
-        interpreter.llm.model = f"openai/{os.getenv('INTERPRETER_MODEL', 'qwq-plus')}"
-        interpreter.llm.api_base = os.getenv('INTERPRETER_API_BASE', 'https://dashscope.aliyuncs.com/compatible-mode/v1')
-        interpreter.llm.api_key = os.getenv('INTERPRETER_API_KEY', 'sk-bc4339fe8e8e48f6b57fab86b5d70afa')
+        interpreter.llm.model = f"openai/{os.getenv('INTERPRETER_MODEL')}"
+        interpreter.llm.api_base = os.getenv('INTERPRETER_API_BASE')
+        interpreter.llm.api_key = os.getenv('INTERPRETER_API_KEY')
         
         # 添加环境变量设置
-        os.environ['OPENAI_API_KEY'] = os.getenv('INTERPRETER_API_KEY', 'sk-bc4339fe8e8e48f6b57fab86b5d70afa')
+        os.environ['OPENAI_API_KEY'] = os.getenv('INTERPRETER_API_KEY')
         
         # 配置运行设置
         if hasattr(interpreter, "auto_run"):

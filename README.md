@@ -27,7 +27,7 @@ Open Interpreter 安全沙箱是一个专为 Open Interpreter 框架设计的代
 1. **克隆仓库**
 
 ```bash
-git clone https://github.com/yourusername/interpreter-sandbox.git
+git clone https://github.com/wenqiangleo/interpreter-sandbox.git
 cd interpreter-sandbox
 ```
 
@@ -87,9 +87,9 @@ from sandbox.config.settings import SandboxSettings
 import os
 
 # 设置环境变量
-os.environ['INTERPRETER_API_BASE'] = "您的API基础URL"
-os.environ['INTERPRETER_MODEL'] = "您的模型名称"
-os.environ['INTERPRETER_API_KEY'] = "您的API密钥"
+os.environ['INTERPRETER_API_BASE'] = "您的API基础URL" #https://dashscope.aliyuncs.com/compatible-mode/v1
+os.environ['INTERPRETER_MODEL'] = "您的模型名称"  #qwen-max
+os.environ['INTERPRETER_API_KEY'] = "您的API密钥" #sk-
 
 # 创建沙箱
 sandbox = InterpreterSandbox(SandboxSettings(
@@ -195,12 +195,6 @@ python -m pytest tests/
 ## 贡献指南
 
 欢迎对本项目提供贡献！
-
-1. Fork本仓库
-2. 创建您的特性分支 (`git checkout -b feature/amazing-feature`)
-3. 提交您的更改 (`git commit -m 'Add some amazing feature'`)
-4. 推送到分支 (`git push origin feature/amazing-feature`)
-5. 开启一个Pull Request
 
 ## 许可证
 
